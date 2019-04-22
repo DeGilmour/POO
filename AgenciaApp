@@ -1,0 +1,67 @@
+import javax.swing.JOptionPane;
+
+public class AgenciaApp {
+   public static void main (String [] args) {
+      Agencia agencia = new Agencia();
+      int menu;
+      String tituloProjeto = null;
+      Projeto p = new Projeto(p.getResultado(),p.getDataInicio(),p.getDataTermino(),p.getDataEnvio(),p.getDataResposta(),p.getOrcamento());
+
+      do {menu = Integer.parseInt (JOptionPane.showInputDialog("1. Inserir um novo projeto\n2. Listar todos os projetos\n3. Atualizar a avaliação do projeto\n4. Excluir um projeto\n5. Listar um projeto pelo numero\n6. Sair"));
+         if (menu == 1) {
+            tituloProjeto = JOptionPane.showInputDialog ("Digite o titulo do projeto");
+            String resultado = JOptionPane.showInputDialog ("Qual foi o resultado?");
+            String dataInicio = JOptionPane.showInputDialog ("Data de inicio (dd/mm/aaaa):");
+            String dataTermino = JOptionPane.showInputDialog ("Data de finalização (dd/mm/aaaa):");
+            String dataEnvio = JOptionPane.showInputDialog ("Data de envio (dd/mm/aaaa):");
+            String dataResposta = JOptionPane.showInputDialog ("Data da resposta (dd/mm/aaaa):");
+            double orcamento = Double.parseDouble (JOptionPane.showInputDialog ("Orçamento de:"));
+               /*GrandeAreaConhecimento grandeAreaConhecimento = ("a");*/
+            agencia.addProjeto (tituloProjeto, resultado, dataInicio, dataTermino, dataEnvio, dataResposta, orcamento/*, grandeAreaConhecimento*/);
+         }
+         else if (menu == 2) {
+            agencia.listarProjetos();
+         }
+         
+         else if (menu == 3) {
+            tituloProjeto = JOptionPane.showInputDialog ("Digite o nome do projeto a ser alterado");
+            if (agencia.blockProjeto(tituloProjeto))
+            {tituloProjeto = JOptionPane.showInputDialog ("Digite o novo titulo do projeto");
+               String resultado = JOptionPane.showInputDialog ("Qual foi o resultado?");
+               String dataInicio = JOptionPane.showInputDialog ("Data de inicio (dd/mm/aaaa):");
+               String dataTermino = JOptionPane.showInputDialog ("Data de finalização (dd/mm/aaaa):");
+               String dataEnvio = JOptionPane.showInputDialog ("Data de envio (dd/mm/aaaa):");
+               String dataResposta = JOptionPane.showInputDialog ("Data da resposta (dd/mm/aaaa):");
+               double orcamento = Double.parseDouble (JOptionPane.showInputDialog ("Orçamento de:"));
+               /*GrandeAreaConhecimento grandeAreaConhecimento = ("a");*/
+               agencia.addProjeto (tituloProjeto, resultado, dataInicio, dataTermino, dataEnvio, dataResposta, orcamento/*, grandeAreaConhecimento*/);
+            }
+            else {JOptionPane.showMessageDialog (null, "Não encontrado");}
+         }
+         
+         else if (menu == 4) {
+            tituloProjeto = JOptionPane.showInputDialog ("Digite o nome do projeto");
+            if (agencia.blockProjeto(tituloProjeto)){ JOptionPane.showMessageDialog (null, "Removido");}
+            else {JOptionPane.showMessageDialog (null, "Não encontrado");}
+         }
+          else if (menu == 5) {
+          int  nProj = Integer.parseInt(JOptionPane.showInputDialog("Coloque o numero do projeto"));
+          if (nProj==agencia.projetos.size()){
+           JOptionPane.showMessageDialog(null,p.getDados());
+           }
+          
+          
+                
+         
+          
+                     
+         }
+         
+         else if (menu == 6) {}
+         
+         else {
+            JOptionPane.showMessageDialog (null, "Opcao invalida");
+         }
+      } while (menu != 6);
+   }
+}
